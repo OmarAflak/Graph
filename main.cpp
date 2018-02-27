@@ -8,10 +8,11 @@ void createGraph(){
 	Graph graph;
 
 	// Nodes are created implicitly
-	graph.connect("Omar", "Joss");
-	graph.connect("Joss", "Omar");
-	graph.connect("Omar", "Alex");
-	graph.connect("Joss", "Alex");
+	graph.connect("Emmanuel M", "François B");
+	graph.connect("Manuel V", "Christiane T");
+	graph.connect("Manuel V", "Alain J");
+	graph.connect("François B", "Emmanuel M");
+	graph.connect("Marine L", "Manuel V");
 
 	ofstream out("graph");
 	graph.toStream(out);
