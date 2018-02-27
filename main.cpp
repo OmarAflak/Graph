@@ -4,27 +4,28 @@
 
 using namespace std;
 
-int main(){
+void createGraph(){
 	Graph graph;
-	Node* node1 = new Node("Omar");
-	Node* node2 = new Node("Joss");
-	Node* node3 = new Node("Alex");
-	
-	graph.connect(node1, node2);
-	graph.connect(node2, node1);
-	graph.connect(node1, node3);
-	graph.connect(node2, node3);
-	
-	ofstream out("bckp.txt");
-	if(out){
-		graph.toStream(out);
-		out.close();
-	}
-	
-	ifstream in("bckp.txt");
-	if(in){
-		graph.fromStream(in);
-	}
-	
-	graph.toStream(cout);
+
+	// Nodes are created implicitly
+	graph.connect("Omar", "Joss");
+	graph.connect("Joss", "Omar");
+	graph.connect("Omar", "Alex");
+	graph.connect("Joss", "Alex");
+
+	ofstream out("graph");
+	graph.toStream(out);
+	out.close();
+}
+
+void loadGraph(){
+	Graph graph;
+	ifstream in("graph");
+	graph.fromStream(in);
+	graph.print();
+}
+
+int main(){
+	createGraph();
+	loadGraph();
 }

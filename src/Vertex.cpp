@@ -5,6 +5,11 @@ Vertex::Vertex(){
 	m_end = NULL;
 }
 
+Vertex::Vertex(Node* start, Node* end){
+	m_start = start;
+	m_end = end;
+}
+
 Node* Vertex::getStart() const{
 	return m_start;
 }
