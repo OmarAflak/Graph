@@ -12,6 +12,8 @@ class Graph{
 		std::vector<Vertex*> m_vertices;
 		std::vector<Node*> m_nodes;
 		
+		int getNodeIndex(Node* node);
+		
 	public:
 		Graph();
 		~Graph();
@@ -22,6 +24,7 @@ class Graph{
 		int getNodesCount();
 		
 		void print();
+		void toStream(std::ostream& os);
 };
 
 #endif

@@ -46,3 +46,29 @@ void Graph::print(){
 	}
 	std::cout << std::endl;
 }
+
+int Graph::getNodeIndex(Node* node){
+	for(int i=0 ; i<m_nodes.size() ; i++){
+		if(m_nodes[i]==node){
+			return i;
+		}
+	}
+	return -1;
+}
+
+void Graph::toStream(std::ostream& os){
+	int length = m_nodes.size();
+	std::vector<std::vector<bool> > connections(length, std::vector<bool>(length, false));
+	for(int i=0 ; i<m_vertices.size() ; i++){
+		int index1 = getNodeIndex(m_vertices[i]->getStart());
+		int index2 = getNodeIndex(m_vertices[i]->getEnd());
+		connections[index1][index2] = true;
+	}
+	
+	for(int i=0 ; i<length ; i++){
+		for(int j=0 ; j<length ; j++){
+			os << connections[i][j] << " ";
+		}
+		os << std::endl;
+	}
+}

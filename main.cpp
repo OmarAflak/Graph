@@ -14,7 +14,7 @@ int main(){
 	graph.connect(node1, node3);
 	graph.connect(node2, node3);
 	
-	graph.print();
+	graph.toStream(cout);
 	
 	delete node1;
 	delete node2;
