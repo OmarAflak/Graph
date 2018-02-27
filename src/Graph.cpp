@@ -7,6 +7,10 @@ Graph::~Graph(){
 	for(int i=0 ; i<m_vertices.size() ; i++){
 		delete m_vertices[i];
 	}
+	
+	for(int i=0 ; i<m_nodes.size() ; i++){
+		delete m_nodes[i];
+	}
 }
 
 void Graph::addNode(Node* node){
@@ -62,13 +66,58 @@ void Graph::toStream(std::ostream& os){
 	for(int i=0 ; i<m_vertices.size() ; i++){
 		int index1 = getNodeIndex(m_vertices[i]->getStart());
 		int index2 = getNodeIndex(m_vertices[i]->getEnd());
-		connections[index1][index2] = true;
+		if(index1!=-1 && index2!=-1){
+			connections[index1][index2] = true;
+		}
+		else{
+			std::cout << "oups";
+		}
 	}
 	
+	os << length << std::endl;
 	for(int i=0 ; i<length ; i++){
+		os << m_nodes[i]->getName() << "_";
 		for(int j=0 ; j<length ; j++){
-			os << connections[i][j] << " ";
+			os << connections[i][j];
 		}
 		os << std::endl;
+	}
+}
+
+void Graph::fromStream(std::istream& is){
+	int length;
+	is >> length;
+	std::vector<std::vector<bool> > connections(length, std::vector<bool>(length, false));
+	
+	std::vector<std::string> names;
+	std::string name;
+	char c = ' ';
+	for(int i=0 ; i<length ; i++){
+		while((c=is.get())!='_'){
+			name += c;
+		}
+		names.push_back(name);
+		for(int j=0 ; j<length ; j++){
+			c = is.get();
+			if(c=='1'){
+				connections[i][j] = true;
+			}
+		}
+	}
+	
+	m_nodes.resize(length);
+	for(int i=0 ; i<length ; i++){
+		m_nodes[i] = new Node(names[i]);
+	}
+		
+	for(int i=0 ; i<length ; i++){
+		for(int j=0 ; j<length ; j++){
+			if(connections[i][j]){
+				Vertex* vertex = new Vertex();
+				vertex->setStart(m_nodes[i]);
+				vertex->setEnd(m_nodes[j]);
+				m_vertices.push_back(vertex);
+			}
+		}
 	}
 }

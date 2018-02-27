@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "Graph.h"
 
 using namespace std;
@@ -6,7 +7,7 @@ using namespace std;
 int main(){
 	Graph graph;
 	Node* node1 = new Node("Omar");
-	Node* node2 = new Node("Jo$$");
+	Node* node2 = new Node("Joss");
 	Node* node3 = new Node("Alex");
 	
 	graph.connect(node1, node2);
@@ -14,9 +15,16 @@ int main(){
 	graph.connect(node1, node3);
 	graph.connect(node2, node3);
 	
-	graph.toStream(cout);
+	ofstream out("bckp.txt");
+	if(out){
+		graph.toStream(out);
+		out.close();
+	}
 	
-	delete node1;
-	delete node2;
-	delete node3;
+	ifstream in("bckp.txt");
+	if(in){
+		graph.fromStream(in);
+	}
+	
+	graph.toStream(cout);
 }

@@ -25,6 +25,7 @@ class Graph{
 		
 		void print();
 		void toStream(std::ostream& os);
+		void fromStream(std::istream& is);
 };
 
 #endif
