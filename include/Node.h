@@ -6,12 +6,12 @@
 class Node{
 	private:
 		std::string m_name;
-		
+
 	public:
 		Node();
 		Node(std::string name);
-		
-		std::string getName();
+
+		std::string getName() const;
 };
 
 #endif

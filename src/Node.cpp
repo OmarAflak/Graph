@@ -8,6 +8,6 @@ Node::Node(){
 	m_name = "";
 }
 
-std::string Node::getName(){
+std::string Node::getName() const{
 	return m_name;
 }
