@@ -4,29 +4,29 @@
 
 using namespace std;
 
-void createGraph(){
+void createGraph(const char* filename){
 	Graph graph;
 
-	// Nodes are created implicitly
+	// Nodes are created implicitly when connecting them together
 	graph.connect("Emmanuel M", "François B");
 	graph.connect("Manuel V", "Christiane T");
 	graph.connect("Manuel V", "Alain J");
 	graph.connect("François B", "Emmanuel M");
 	graph.connect("Marine L", "Manuel V");
 
-	ofstream out("graph");
-	graph.toStream(out);
+	ofstream out(filename);
+	out << graph;
 	out.close();
 }
 
-void loadGraph(){
+void loadGraph(const char* filename){
 	Graph graph;
-	ifstream in("graph");
-	graph.fromStream(in);
+	ifstream in(filename);
+	in >> graph;
 	graph.print();
 }
 
 int main(){
-	createGraph();
-	loadGraph();
+	createGraph("graph");
+	loadGraph("graph");
 }

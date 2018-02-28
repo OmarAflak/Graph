@@ -19,7 +19,7 @@ Node* Graph::addNode(std::string name){
 	return node;
 }
 
-Node* Graph::getNode(std::string name){
+Node* Graph::getNode(std::string name) const{
 	for(int i=0 ; i<m_nodes.size() ; i++){
 		if(m_nodes[i]->getName()==name){
 			return m_nodes[i];
@@ -35,7 +35,7 @@ void Graph::connect(std::string name1, std::string name2){
 	m_vertices.push_back(vertex);
 }
 
-bool Graph::hasNode(std::string name){
+bool Graph::hasNode(std::string name) const{
 	for(int i=0 ; i<m_nodes.size() ; i++){
 		if(m_nodes[i]->getName()==name){
 			return true;
@@ -51,7 +51,7 @@ void Graph::print(){
 	}
 }
 
-int Graph::getNodeIndex(Node* node){
+int Graph::getNodeIndex(Node* node) const{
 	for(int i=0 ; i<m_nodes.size() ; i++){
 		if(m_nodes[i]==node){
 			return i;
@@ -60,7 +60,7 @@ int Graph::getNodeIndex(Node* node){
 	return -1;
 }
 
-void Graph::toStream(std::ostream& os){
+void Graph::toStream(std::ostream& os) const{
 	int length = m_nodes.size();
 	std::vector<std::vector<bool> > connections(length, std::vector<bool>(length, false));
 
@@ -113,4 +113,14 @@ void Graph::fromStream(std::istream& is){
 			}
 		}
 	}
+}
+
+std::ostream& operator<<(std::ostream& os, const Graph& graph){
+	graph.toStream(os);
+	return os;
+}
+
+std::istream& operator>>(std::istream& is, Graph& graph){
+	graph.fromStream(is);
+	return is;
 }
