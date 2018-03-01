@@ -17,6 +17,10 @@ std::vector<Node*> Graph::getNodes() const{
 	return m_nodes;
 }
 
+std::vector<Vertex*> Graph::getVertices() const{
+	return m_vertices;
+}
+
 Node* Graph::addNode(std::string name){
 	Node* node = new Node(name);
 	m_nodes.push_back(node);
@@ -114,6 +118,8 @@ void Graph::fromStream(std::istream& is){
 	for(int i=0 ; i<length ; i++){
 		for(int j=0 ; j<length ; j++){
 			if(connections[i][j]){
+				m_nodes[i]->setOutConnections(m_nodes[i]->getOutConnections()+1);
+				m_nodes[j]->setInConnections(m_nodes[j]->getInConnections()+1);
 				Vertex* vertex = new Vertex(m_nodes[i], m_nodes[j]);
 				m_vertices.push_back(vertex);
 			}
