@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 
-#include "Node.h"
 #include "Vertex.h"
 #include "Utils.h"
 
