@@ -2,20 +2,30 @@
 
 Node::Node(std::string name){
 	m_name = name;
+	m_connections = 0;
 }
 
 Node::Node(){
 	m_name = "";
+	m_connections = 0;
 }
 
 std::string Node::getName() const{
 	return m_name;
 }
 
-int Node::getConnections() const{
-	return m_connections;
+int Node::getInConnections() const{
+	return m_inConnections;
 }
 
-void Node::setConnections(int connections){
-	m_connections = connection;
+int Node::getOutConnections() const{
+	return m_outConnections;
+}
+
+void Node::setInConnections(int connections){
+	m_inConnections = connections;
+}
+
+void Node::setOutConnections(int connections){
+	m_outConnections = connections;
 }

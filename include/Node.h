@@ -6,16 +6,19 @@
 class Node{
 	private:
 		std::string m_name;
-		int m_connections;
+		int m_inConnections;
+		int m_outConnections;
 
 	public:
 		Node();
 		Node(std::string name);
 
 		std::string getName() const;
-		int getConnections() const;
+		int getInConnections() const;
+		int getOutConnections() const;
 
-		void setConnections(int connection);
+		void setInConnections(int connections);
+		void setOutConnections(int connections);
 };
 
 #endif
