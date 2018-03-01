@@ -15,7 +15,7 @@ $(ODIR)/Node.o : $(SRCS)/Node.cpp $(HDRS)/Node.h
 $(ODIR)/Vertex.o : $(SRCS)/Vertex.cpp $(HDRS)/Vertex.h $(ODIR)/Node.o
 	$(CC) -c $< -o $@
 
-$(ODIR)/Graph.o : $(SRCS)/Graph.cpp $(HDRS)/Graph.h $(HDRS)/Utils.h $(ODIR)/Vertex.o $(ODIR)/Node.o
+$(ODIR)/Graph.o : $(SRCS)/Graph.cpp $(HDRS)/Graph.h $(HDRS)/Utils.h $(ODIR)/Vertex.o
 	$(CC) -c $< -o $@
 
 $(ODIR)/main.o : $(SRCS)/main.cpp $(ODIR)/Graph.o
