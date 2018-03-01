@@ -13,6 +13,10 @@ Graph::~Graph(){
 	}
 }
 
+std::vector<Node*> Graph::getNodes() const{
+	return m_nodes;
+}
+
 Node* Graph::addNode(std::string name){
 	Node* node = new Node(name);
 	m_nodes.push_back(node);
@@ -31,6 +35,8 @@ Node* Graph::getNode(std::string name) const{
 void Graph::connect(std::string name1, std::string name2){
 	Node* node1 = hasNode(name1)?getNode(name1):addNode(name1);
 	Node* node2 = hasNode(name2)?getNode(name2):addNode(name2);
+	node1->setConnections(node1->getConnections()+1);
+	node2->setConnections(node2->getConnections()+1);
 	Vertex* vertex = new Vertex(node1, node2);
 	m_vertices.push_back(vertex);
 }
