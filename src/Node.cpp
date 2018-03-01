@@ -2,12 +2,14 @@
 
 Node::Node(std::string name){
 	m_name = name;
-	m_connections = 0;
+	m_inConnections = 0;
+	m_outConnections = 0;
 }
 
 Node::Node(){
 	m_name = "";
-	m_connections = 0;
+	m_inConnections = 0;
+	m_outConnections = 0;
 }
 
 std::string Node::getName() const{
