@@ -29,6 +29,4 @@ void loadGraph(const char* filename){
 int main(){
 	createGraph("graph");
 	loadGraph("graph");
-
-	cout << "hello World!" << endl;
 }
