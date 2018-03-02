@@ -21,6 +21,33 @@ std::vector<Vertex*> Graph::getVertices() const{
 	return m_vertices;
 }
 
+std::vector<Node*> Graph::getInConnections(std::string name){
+	Node* node = getNode(name);
+	std::vector<Node*> nodes;
+	if(node!=NULL){
+		for(int i=0 ; i<m_vertices.size() ; i++){
+			if(m_vertices[i]->getEnd()==node){
+				nodes.push_back(m_vertices[i]->getStart());
+			}
+		}
+	}
+	return nodes;
+}
+
+
+std::vector<Node*> Graph::getOutConnections(std::string name){
+	Node* node = getNode(name);
+	std::vector<Node*> nodes;
+	if(node!=NULL){
+		for(int i=0 ; i<m_vertices.size() ; i++){
+			if(m_vertices[i]->getStart()==node){
+				nodes.push_back(m_vertices[i]->getEnd());
+			}
+		}
+	}
+	return nodes;
+}
+
 Node* Graph::addNode(std::string name){
 	Node* node = new Node(name);
 	m_nodes.push_back(node);

@@ -20,6 +20,8 @@ class Graph{
 
 		std::vector<Node*> getNodes() const;
 		std::vector<Vertex*> getVertices() const;
+		std::vector<Node*> getInConnections(std::string name);
+		std::vector<Node*> getOutConnections(std::string name);
 		Node* addNode(std::string name);
 		Node* getNode(std::string name) const;
 		void connect(std::string name1, std::string name2);
