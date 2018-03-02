@@ -21,7 +21,7 @@ std::vector<Vertex*> Graph::getVertices() const{
 	return m_vertices;
 }
 
-std::vector<Node*> Graph::getInConnections(std::string name){
+std::vector<Node*> Graph::getInConnections(std::string name) const{
 	Node* node = getNode(name);
 	std::vector<Node*> nodes;
 	if(node!=NULL){
@@ -34,8 +34,7 @@ std::vector<Node*> Graph::getInConnections(std::string name){
 	return nodes;
 }
 
-
-std::vector<Node*> Graph::getOutConnections(std::string name){
+std::vector<Node*> Graph::getOutConnections(std::string name) const{
 	Node* node = getNode(name);
 	std::vector<Node*> nodes;
 	if(node!=NULL){
