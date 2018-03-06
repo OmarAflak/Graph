@@ -6,7 +6,7 @@ using namespace std;
 
 Graph createGraph(){
 	Graph graph;
-	
+
 	// Nodes are created implicitly when using connect()
 	graph.connect("Emmanuel M", "François B");
 	graph.connect("Manuel V", "Christiane T");
@@ -31,10 +31,10 @@ Graph loadGraph(const char* filename){
 
 int main(){
 	// Create graph
-	Graph graph = createGraph();
+	// Graph graph = createGraph();
 
 	// Save it
-	saveGraph(graph, "graph.txt");
+	// saveGraph(graph, "graph.txt");
 
 	// Load it
 	// You can edit graph.txt manually and comment the lines above
