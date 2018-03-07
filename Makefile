@@ -1,33 +1,31 @@
 CC = g++
-PROG = main
 ODIR = obj
-SRCS = src
-HDRS = include
-_OBJS = main.o Utils.o Node.o Vertex.o Graph.o
-OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
+PROG = main
+CXXFLAG = -std=c++11
 
-$(PROG) : $(ODIR) $(ODIR)/main.o
-	$(CC) -o $@ $(OBJS)
+$(PROG) : $(ODIR) $(ODIR)/Utils.o $(ODIR)/Node.o $(ODIR)/Graph.o $(ODIR)/main.o $(ODIR)/Vertex.o 
+	$(CC) -o $@ $(ODIR)/Utils.o $(ODIR)/Node.o $(ODIR)/Graph.o $(ODIR)/main.o $(ODIR)/Vertex.o $(CXXFLAG)
 
-$(ODIR)/Utils.o : $(SRCS)/Utils.cpp $(HDRS)/Utils.h
-	$(CC) -c $< -o $@
+$(ODIR)/Utils.o : ./src/Utils.cpp ./include/Utils.h 
+	$(CC) -c $< -o $@ $(CXXFLAG)
 
-$(ODIR)/Node.o : $(SRCS)/Node.cpp $(HDRS)/Node.h
-	$(CC) -c $< -o $@
+$(ODIR)/Node.o : ./src/Node.cpp ./include/Node.h 
+	$(CC) -c $< -o $@ $(CXXFLAG)
 
-$(ODIR)/Vertex.o : $(SRCS)/Vertex.cpp $(HDRS)/Vertex.h $(ODIR)/Node.o
-	$(CC) -c $< -o $@
+$(ODIR)/Graph.o : ./src/Graph.cpp ./include/Graph.h ./include/Vertex.h ./include/Utils.h 
+	$(CC) -c $< -o $@ $(CXXFLAG)
 
-$(ODIR)/Graph.o : $(SRCS)/Graph.cpp $(HDRS)/Graph.h $(ODIR)/Utils.o $(ODIR)/Vertex.o
-	$(CC) -c $< -o $@
+$(ODIR)/main.o : ./src/main.cpp ./include/Graph.h 
+	$(CC) -c $< -o $@ $(CXXFLAG)
 
-$(ODIR)/main.o : $(SRCS)/main.cpp $(ODIR)/Graph.o
-	$(CC) -c $< -o $@
+$(ODIR)/Vertex.o : ./src/Vertex.cpp ./include/Vertex.h ./include/Node.h 
+	$(CC) -c $< -o $@ $(CXXFLAG)
 
 $(ODIR) :
 	if [ ! -d $(ODIR) ]; then mkdir $(ODIR); fi
 
-.PHONY: clean
+.PHONY : clean
 clean :
 	if [ -d $(ODIR) ]; then rm $(ODIR) -r; fi
 	if [ -f $(PROG) ]; then rm $(PROG); fi
+
