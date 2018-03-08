@@ -1,8 +1,8 @@
 #include "../include/Vertex.h"
 
 Vertex::Vertex(){
-	m_start = NULL;
-	m_end = NULL;
+	m_start = nullptr;
+	m_end = nullptr;
 }
 
 Vertex::Vertex(Node* start, Node* end){

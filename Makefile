@@ -1,10 +1,13 @@
 CC = g++
 ODIR = obj
-PROG = main
+PROG = graph
 CXXFLAG = -std=c++11
 
-$(PROG) : $(ODIR) $(ODIR)/Utils.o $(ODIR)/Node.o $(ODIR)/Graph.o $(ODIR)/main.o $(ODIR)/Vertex.o 
-	$(CC) -o $@ $(ODIR)/Utils.o $(ODIR)/Node.o $(ODIR)/Graph.o $(ODIR)/main.o $(ODIR)/Vertex.o $(CXXFLAG)
+$(PROG) : $(ODIR) $(ODIR)/Graph.o $(ODIR)/Utils.o $(ODIR)/Node.o $(ODIR)/Vertex.o $(ODIR)/main.o 
+	$(CC) -o $@ $(ODIR)/Graph.o $(ODIR)/Utils.o $(ODIR)/Node.o $(ODIR)/Vertex.o $(ODIR)/main.o $(CXXFLAG)
+
+$(ODIR)/Graph.o : ./src/Graph.cpp ./include/Graph.h ./include/Vertex.h ./include/Utils.h 
+	$(CC) -c $< -o $@ $(CXXFLAG)
 
 $(ODIR)/Utils.o : ./src/Utils.cpp ./include/Utils.h 
 	$(CC) -c $< -o $@ $(CXXFLAG)
@@ -12,13 +15,10 @@ $(ODIR)/Utils.o : ./src/Utils.cpp ./include/Utils.h
 $(ODIR)/Node.o : ./src/Node.cpp ./include/Node.h 
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
-$(ODIR)/Graph.o : ./src/Graph.cpp ./include/Graph.h ./include/Vertex.h ./include/Utils.h 
+$(ODIR)/Vertex.o : ./src/Vertex.cpp ./include/Vertex.h ./include/Node.h 
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
 $(ODIR)/main.o : ./src/main.cpp ./include/Graph.h 
-	$(CC) -c $< -o $@ $(CXXFLAG)
-
-$(ODIR)/Vertex.o : ./src/Vertex.cpp ./include/Vertex.h ./include/Node.h 
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
 $(ODIR) :
