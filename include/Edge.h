@@ -3,14 +3,14 @@
 
 #include "Node.h"
 
-class Vertex{
+class Edge{
 	private:
 		Node *m_start;
 		Node *m_end;
 
 	public:
-		Vertex();
-		Vertex(Node* start, Node* end);
+		Edge();
+		Edge(Node* start, Node* end);
 
 		Node* getStart() const;
 		Node* getEnd() const;

@@ -4,8 +4,8 @@ Graph::Graph(){
 }
 
 Graph::~Graph(){
-	for(int i=0 ; i<m_vertices.size() ; i++){
-		delete m_vertices[i];
+	for(int i=0 ; i<m_edges.size() ; i++){
+		delete m_edges[i];
 	}
 
 	for(int i=0 ; i<m_nodes.size() ; i++){
@@ -17,17 +17,17 @@ std::vector<Node*> Graph::getNodes() const{
 	return m_nodes;
 }
 
-std::vector<Vertex*> Graph::getVertices() const{
-	return m_vertices;
+std::vector<Edge*> Graph::getEdges() const{
+	return m_edges;
 }
 
 std::vector<Node*> Graph::getInConnections(std::string name) const{
 	Node* node = getNode(name);
 	std::vector<Node*> nodes;
 	if(node!=nullptr){
-		for(int i=0 ; i<m_vertices.size() ; i++){
-			if(m_vertices[i]->getEnd()==node){
-				nodes.push_back(m_vertices[i]->getStart());
+		for(int i=0 ; i<m_edges.size() ; i++){
+			if(m_edges[i]->getEnd()==node){
+				nodes.push_back(m_edges[i]->getStart());
 			}
 		}
 	}
@@ -38,9 +38,9 @@ std::vector<Node*> Graph::getOutConnections(std::string name) const{
 	Node* node = getNode(name);
 	std::vector<Node*> nodes;
 	if(node!=nullptr){
-		for(int i=0 ; i<m_vertices.size() ; i++){
-			if(m_vertices[i]->getStart()==node){
-				nodes.push_back(m_vertices[i]->getEnd());
+		for(int i=0 ; i<m_edges.size() ; i++){
+			if(m_edges[i]->getStart()==node){
+				nodes.push_back(m_edges[i]->getEnd());
 			}
 		}
 	}
@@ -67,8 +67,8 @@ void Graph::connect(std::string name1, std::string name2){
 	Node* node2 = hasNode(name2)?getNode(name2):addNode(name2);
 	node1->setOutConnections(node1->getOutConnections()+1);
 	node2->setInConnections(node2->getInConnections()+1);
-	Vertex* vertex = new Vertex(node1, node2);
-	m_vertices.push_back(vertex);
+	Edge* edge = new Edge(node1, node2);
+	m_edges.push_back(edge);
 }
 
 bool Graph::hasNode(std::string name) const{
@@ -81,9 +81,9 @@ bool Graph::hasNode(std::string name) const{
 }
 
 void Graph::print(){
-	for(int i=0 ; i<m_vertices.size() ; i++){
-		std::cout << m_vertices[i]->getStart()->getName() << " -> ";
-		std::cout << m_vertices[i]->getEnd()->getName() << std::endl;
+	for(int i=0 ; i<m_edges.size() ; i++){
+		std::cout << m_edges[i]->getStart()->getName() << " -> ";
+		std::cout << m_edges[i]->getEnd()->getName() << std::endl;
 	}
 }
 
@@ -100,9 +100,9 @@ void Graph::toStream(std::ostream& os) const{
 	int length = m_nodes.size();
 	std::vector<std::vector<bool> > connections(length, std::vector<bool>(length, false));
 
-	for(int i=0 ; i<m_vertices.size() ; i++){
-		int index1 = getNodeIndex(m_vertices[i]->getStart());
-		int index2 = getNodeIndex(m_vertices[i]->getEnd());
+	for(int i=0 ; i<m_edges.size() ; i++){
+		int index1 = getNodeIndex(m_edges[i]->getStart());
+		int index2 = getNodeIndex(m_edges[i]->getEnd());
 		connections[index1][index2] = true;
 	}
 
@@ -140,14 +140,14 @@ void Graph::fromStream(std::istream& is){
 		m_nodes[i] = new Node(names[i]);
 	}
 
-	m_vertices.resize(0);
+	m_edges.resize(0);
 	for(int i=0 ; i<length ; i++){
 		for(int j=0 ; j<length ; j++){
 			if(connections[i][j]){
 				m_nodes[i]->setOutConnections(m_nodes[i]->getOutConnections()+1);
 				m_nodes[j]->setInConnections(m_nodes[j]->getInConnections()+1);
-				Vertex* vertex = new Vertex(m_nodes[i], m_nodes[j]);
-				m_vertices.push_back(vertex);
+				Edge* edge = new Edge(m_nodes[i], m_nodes[j]);
+				m_edges.push_back(edge);
 			}
 		}
 	}
