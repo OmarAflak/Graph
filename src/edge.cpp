@@ -1,27 +1,27 @@
-#include "../include/Edge.h"
+#include "../include/edge.h"
 
 Edge::Edge(){
-	m_start = nullptr;
-	m_end = nullptr;
+	mStart = nullptr;
+	mEnd = nullptr;
 }
 
 Edge::Edge(Node* start, Node* end){
-	m_start = start;
-	m_end = end;
+	mStart = start;
+	mEnd = end;
 }
 
 Node* Edge::getStart() const{
-	return m_start;
+	return mStart;
 }
 
 Node* Edge::getEnd() const{
-	return m_end;
+	return mEnd;
 }
 
 void Edge::setStart(Node* start){
-	m_start = start;
+	mStart = start;
 }
 
 void Edge::setEnd(Node* end){
-	m_end = end;
+	mEnd = end;
 }

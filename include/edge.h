@@ -1,12 +1,12 @@
 #ifndef EDGE
 #define EDGE
 
-#include "Node.h"
+#include "node.h"
 
 class Edge{
 	private:
-		Node *m_start;
-		Node *m_end;
+		Node *mStart;
+		Node *mEnd;
 
 	public:
 		Edge();

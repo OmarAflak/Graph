@@ -3,22 +3,22 @@ ODIR = obj
 PROG = graph
 CXXFLAG = -std=c++11
 
-$(PROG) : $(ODIR) $(ODIR)/Graph.o $(ODIR)/Utils.o $(ODIR)/Node.o $(ODIR)/Edge.o $(ODIR)/main.o
-	$(CC) -o $@ $(ODIR)/Graph.o $(ODIR)/Utils.o $(ODIR)/Node.o $(ODIR)/Edge.o $(ODIR)/main.o $(CXXFLAG)
+$(PROG) : $(ODIR) $(ODIR)/graph.o $(ODIR)/utils.o $(ODIR)/node.o $(ODIR)/edge.o $(ODIR)/main.o
+	$(CC) -o $@ $(ODIR)/graph.o $(ODIR)/utils.o $(ODIR)/node.o $(ODIR)/edge.o $(ODIR)/main.o $(CXXFLAG)
 
-$(ODIR)/Graph.o : ./src/Graph.cpp ./include/Graph.h ./include/Edge.h ./include/Utils.h 
+$(ODIR)/graph.o : ./src/graph.cpp ./include/graph.h ./include/edge.h ./include/utils.h
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
-$(ODIR)/Utils.o : ./src/Utils.cpp ./include/Utils.h
+$(ODIR)/utils.o : ./src/utils.cpp ./include/utils.h
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
-$(ODIR)/Node.o : ./src/Node.cpp ./include/Node.h
+$(ODIR)/node.o : ./src/node.cpp ./include/node.h
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
-$(ODIR)/Edge.o : ./src/Edge.cpp ./include/Edge.h ./include/Node.h
+$(ODIR)/edge.o : ./src/edge.cpp ./include/edge.h ./include/node.h
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
-$(ODIR)/main.o : ./src/main.cpp ./include/Graph.h
+$(ODIR)/main.o : ./src/main.cpp ./include/graph.h
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
 $(ODIR) :

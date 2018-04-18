@@ -4,8 +4,8 @@
 #include <iostream>
 #include <vector>
 
-#include "Edge.h"
-#include "Utils.h"
+#include "edge.h"
+#include "utils.h"
 
 class Graph{
 	private:

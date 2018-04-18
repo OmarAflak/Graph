@@ -5,9 +5,9 @@
 
 class Node{
 	private:
-		std::string m_name;
-		int m_inConnections;
-		int m_outConnections;
+		std::string mName;
+		int mInConnections;
+		int mOutConnections;
 
 	public:
 		Node();
