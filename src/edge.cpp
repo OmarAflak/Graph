@@ -12,7 +12,7 @@ Edge::Edge(const Edge& edge){
 	mStart = edge.mStart;
 	mEnd = edge.mEnd;
 	if(mData!=nullptr && mInterface.mCopy!=nullptr){
-		mData = (*mInterface.mCopy)(edge.mData);
+		mData = mInterface.mCopy(edge.mData);
 	}
 }
 
@@ -25,7 +25,7 @@ Edge::Edge(Node* start, Node* end){
 
 Edge::~Edge(){
 	if(mData!=nullptr && mInterface.mDestroy!=nullptr){
-		(*mInterface.mDestroy)(mData);
+		mInterface.mDestroy(mData);
 	}
 }
 
