@@ -1,5 +1,5 @@
-#ifndef VERTEX
-#define VERTEX
+#ifndef EDGE
+#define EDGE
 
 #include "Node.h"
 
