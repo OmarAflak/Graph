@@ -1,33 +1,38 @@
 #include "../include/node.h"
 
-Node::Node(std::string name){
-	mName = name;
-	mInConnections = 0;
-	mOutConnections = 0;
-}
-
 Node::Node(){
-	mName = "";
-	mInConnections = 0;
-	mOutConnections = 0;
+	mUid = genUid();
+	mData = nullptr;
 }
 
-std::string Node::getName() const{
-	return mName;
+Node::Node(const Node& node){
+	mUid = node.mUid;
+	mInterface = node.mInterface;
+	if(mData!=nullptr && mInterface.mCopy!=nullptr){
+		mData = (*mInterface.mCopy)(node.mData);
+	}
 }
 
-int Node::getInConnections() const{
-	return mInConnections;
+Node::Node(std::string uid){
+	mUid = uid;
+	mData = nullptr;
 }
 
-int Node::getOutConnections() const{
-	return mOutConnections;
+Node::~Node(){
+	if(mData!=nullptr && mInterface.mDestroy!=nullptr){
+		(*mInterface.mDestroy)(mData);
+	}
 }
 
-void Node::setInConnections(int connections){
-	mInConnections = connections;
+std::string Node::getUid() const{
+	return mUid;
 }
 
-void Node::setOutConnections(int connections){
-	mOutConnections = connections;
+void* Node::getData() const{
+	return mData;
+}
+
+void Node::setData(void* data, DataInterface interface){
+	mData = data;
+	mInterface = interface;
 }

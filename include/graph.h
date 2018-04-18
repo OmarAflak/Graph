@@ -2,37 +2,30 @@
 #define GRAPH
 
 #include <iostream>
-#include <vector>
+#include <utility>
+#include <map>
 
-#include "edge.h"
-#include "utils.h"
+#include "graphEntry.h"
 
 class Graph{
 	private:
-		std::vector<Edge*> m_edges;
-		std::vector<Node*> m_nodes;
-
-		int getNodeIndex(Node* node) const;
+		std::map<std::string, GraphEntry> mData;
 
 	public:
 		Graph();
+		Graph(const Graph& graph);
 		~Graph();
 
-		std::vector<Node*> getNodes() const;
-		std::vector<Edge*> getEdges() const;
-		std::vector<Node*> getInConnections(std::string name) const;
-		std::vector<Node*> getOutConnections(std::string name) const;
-		Node* addNode(std::string name);
-		Node* getNode(std::string name) const;
-		void connect(std::string name1, std::string name2);
-		bool hasNode(std::string name) const;
+		std::map<std::string, GraphEntry> getAllData() const;
+		GraphEntry getNodeData(const std::string& uid) const;
+		bool hasNode(const std::string& uid) const;
 
-		void print();
-		void toStream(std::ostream& os) const;
-		void fromStream(std::istream& is);
+		Node* addNode(const std::string& uid="");
+		Node* addNode(Node* const node);
+		void connect(const std::string& uid1, const std::string& uid2);
+		void connect(Node* const node1, Node* const node2);
+
+		void print() const;
 };
-
-std::ostream& operator<<(std::ostream& os, const Graph& graph);
-std::istream& operator>>(std::istream& is, Graph& graph);
 
 #endif

@@ -4,7 +4,9 @@
 
 using namespace std;
 
-Graph createGraph(){
+int main(){
+	initRand();
+
 	Graph graph;
 
 	// Nodes are created implicitly when using connect()
@@ -13,10 +15,6 @@ Graph createGraph(){
 	graph.connect("Manuel V", "Alain J");
 	graph.connect("François B", "Emmanuel M");
 	graph.connect("Marine L", "Manuel V");
-	return graph;
-}
 
-int main(){
-	Graph graph = createGraph();
 	graph.print();
 }
