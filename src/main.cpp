@@ -16,28 +16,7 @@ Graph createGraph(){
 	return graph;
 }
 
-void saveGraph(const Graph &graph, const char* filename){
-	ofstream out(filename);
-	out << graph;
-	out.close();
-}
-
-Graph loadGraph(const char* filename){
-	Graph graph;
-	ifstream in(filename);
-	in >> graph;
-	return graph;
-}
-
 int main(){
-	// Create graph
-	// Graph graph = createGraph();
-
-	// Save it
-	// saveGraph(graph, "graph.txt");
-
-	// Load it
-	// You can edit graph.txt manually and comment the lines above
-	Graph _graph = loadGraph("graph.txt");
-	_graph.print();
+	Graph graph = createGraph();
+	graph.print();
 }
