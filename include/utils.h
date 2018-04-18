@@ -1,14 +1,11 @@
 #ifndef UTILS
 #define UTILS
 
-#include <cstdlib>
-#include <ctime>
 #include <string>
+#include <random>
 #include <sstream>
 
-void initRand();
-int genNumber(int min, int max);
-std::string genUid(int length=15);
+std::string genUid(size_t length=0);
 int toInt(std::string str);
 
 #endif

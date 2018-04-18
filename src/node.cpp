@@ -8,8 +8,8 @@ Node::Node(){
 Node::Node(const Node& node){
 	mUid = node.mUid;
 	mInterface = node.mInterface;
-	if(mData!=nullptr && mInterface.mCopy!=nullptr){
-		mData = mInterface.mCopy(node.mData);
+	if(node.mData!=nullptr && node.mInterface.mCopy){
+		mData = node.mInterface.mCopy(node.mData);
 	}
 }
 
@@ -19,7 +19,7 @@ Node::Node(std::string uid){
 }
 
 Node::~Node(){
-	if(mData!=nullptr && mInterface.mDestroy!=nullptr){
+	if(mData!=nullptr && mInterface.mDestroy){
 		mInterface.mDestroy(mData);
 	}
 }

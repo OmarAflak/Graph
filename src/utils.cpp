@@ -1,21 +1,18 @@
 #include "../include/utils.h"
 
-void initRand(){
-    srand(time(0));
-}
+std::string genUid(size_t length){
+    static const std::string::value_type allowed_chars[] {"123456789ABCDFGHJKLMNPQRSTVWXZabcdfghjklmnpqrstvwxz"};
 
-int genNumber(int min, int max){
-    return min + rand()%(max - min + 1);
-}
+    static thread_local std::default_random_engine randomEngine(std::random_device{}());
+    static thread_local std::uniform_int_distribution<int> randomDistribution(0, sizeof(allowed_chars) - 1);
 
-std::string genUid(int length){
-    std::string str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    std::string uid = "";
-    for(unsigned int i=0 ; i<length ; i++){
-        int index = genNumber(0, str.size()-1);
-        uid += str[index];
+    std::string id(length ? length : 16, '\0');
+
+    for (std::string::value_type& c : id) {
+        c = allowed_chars[randomDistribution(randomEngine)];
     }
-    return uid;
+
+    return id;
 }
 
 int toInt(std::string str){
