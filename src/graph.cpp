@@ -69,12 +69,10 @@ void Graph::print() const{
     for(const auto& entry : mData){
         std::cout << entry.second.mNode->getUid() << std::endl;
         for(const auto& e : entry.second.mIn){
-            std::cout << "\t<- " << e->getUid() << " <- ";
-            std::cout << e->getStart()->getUid() << std::endl;
+            std::cout << "\t<- " << e->getStart()->getUid() << std::endl;
         }
         for(const auto& e : entry.second.mOut){
-            std::cout << "\t-> " << e->getUid() << " -> ";
-            std::cout << e->getEnd()->getUid() << std::endl;
+            std::cout << "\t-> " << e->getEnd()->getUid() << std::endl;
         }
     }
 }
