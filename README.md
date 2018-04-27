@@ -10,8 +10,6 @@ make
 ## Example
 
 ```c++
-#include <iostream>
-#include <fstream>
 #include "../include/graph.h"
 
 int main(){
